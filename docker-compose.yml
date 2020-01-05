@@ -1,0 +1,40 @@
+version: "3"
+services:
+  next_web:
+    container_name: next_web
+    build:
+      context: ./
+      dockerfile: docker/web.docker
+    volumes:
+      - ./:/var/www
+    ports:
+      - "443"
+      - "80"
+    environment:
+      - "VIRTUAL_HOST=next.app.local.ro"
+      - "VIRTUAL_PROTO=https"
+      - "VIRTUAL_PORT=443"
+    networks:
+      - nginx-proxy
+      - next
+
+  next_node:
+    container_name: next_node
+    command: /bin/sh /app/docker/entrypoint.sh
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./:/var/www
+      - /var/www/node_modules
+      - ./ssl:/etc/certs
+    ports:
+      - "8080:8080"
+    networks:
+      - next
+
+networks:
+  next:
+    external: true
+  nginx-proxy:
+    external: true
