@@ -4,7 +4,6 @@ import qs from 'qs';
 import {setError} from "../state/actions/error";
 
 import store from "../state/store";
-import {FRAMEWORK_ERROR, LOGIN_REQUIRED} from "../constants";
 
 class Http {
     constructor() {
@@ -16,7 +15,7 @@ class Http {
             return request;
         });
         this._axios = axios.create({});
-        this._url = process.env.API_ROOT;
+        this._url = process.env.API_URL;
         this._apiMethod = false;
         this._response = false;
         this._error = false;
@@ -75,13 +74,13 @@ class Http {
                 } else {
                     errorMessage = {error: response.errorMessage};
 
-                    if (response.errorCode === LOGIN_REQUIRED) {
+                    if (response.errorCode === process.env.LOGIN_REQUIRED) {
                         localStorage.removeItem('rememberToken');
                         sessionStorage.removeItem('jwt');
                         window.location.reload();
                     }
 
-                    if (response.errorMessage === FRAMEWORK_ERROR) {
+                    if (response.errorMessage === process.env.FRAMEWORK_ERROR) {
                         store.dispatch(setError(errorMessage.error));
                     }
                 }
@@ -124,7 +123,7 @@ class Http {
                     }
                 }
             } else {
-                if (errorData.errorCode === LOGIN_REQUIRED) {
+                if (errorData.errorCode === process.env.LOGIN_REQUIRED) {
                     localStorage.removeItem('rememberToken');
                     sessionStorage.removeItem('jwt');
                     window.location.reload();
@@ -132,7 +131,7 @@ class Http {
 
                 errorMessage = {error: errorData.errorMessage};
 
-                if (errorData.errorCode === FRAMEWORK_ERROR) {
+                if (errorData.errorCode === process.env.FRAMEWORK_ERROR) {
                     store.dispatch(setError(errorMessage.error));
                 }
             }
