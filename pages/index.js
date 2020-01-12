@@ -14,6 +14,13 @@ const Home = (props) => {
     );
 };
 
+Home.getInitialProps = async () => {
+    // await new Promise(resolve => {
+    //     setTimeout(resolve, 3000)
+    // });
+    // return {}
+};
+
 function mapStateToProps(state) {
     return { user: state.user}
 }

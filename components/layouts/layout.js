@@ -1,6 +1,7 @@
 import React from "react";
 import Head from 'next/head';
 import '../../resources/styles/app.scss';
+import '../../resources/styles/nprogress.scss';
 import Header from "./header";
 import Nav from "./nav";
 import Footer from "./footer";
