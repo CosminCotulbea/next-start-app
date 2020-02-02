@@ -1,4 +1,4 @@
-FROM node:10.16.0
+FROM node:alpine
 
 RUN mkdir /app
 WORKDIR /app
@@ -8,8 +8,8 @@ RUN npm install --global pm2
 
 COPY package*.json ./
 
-RUN npm install
-COPY . .
+RUN npm install --production --no-optional
+COPY .. ./
 
 EXPOSE 8080
 

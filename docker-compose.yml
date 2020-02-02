@@ -4,15 +4,13 @@ services:
     container_name: next_web
     build:
       context: ./
-      dockerfile: docker/web.docker
+      dockerfile: docker/nginx/Dockerfile
     volumes:
       - ./:/app
     ports:
       - "80"
     environment:
       - "VIRTUAL_HOST=next.app.local.ro"
-      - "VIRTUAL_PROTO=http"
-      - "VIRTUAL_PORT=80"
     networks:
       - nginx-proxy
       - next
@@ -22,7 +20,7 @@ services:
     command: /bin/sh /app/docker/entrypoint.sh
     build:
       context: ./
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/node/Dockerfile
     volumes:
       - ./:/app
       - /app/node_modules
