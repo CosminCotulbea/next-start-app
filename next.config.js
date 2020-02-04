@@ -10,9 +10,9 @@ module.exports = withSass(withCSS({
         config.disableHostCheck = true;
         config.watchOptions = {
             poll: 1000,
-            aggregateTimeout: 300,
+            aggregateTimeout: 300
         };
-        return config
+        return config;
     },
     env: {
         // Reference a variable that was defined in the .env file and make it available at Build Time

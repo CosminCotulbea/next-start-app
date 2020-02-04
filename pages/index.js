@@ -3,12 +3,17 @@ import Layout from "../components/layouts/layout";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import userActions from '../state/actions/user';
+import {
+    Container,
+} from "reactstrap";
 
 
 function Home(props) {
     return (
         <Layout title="Homepage">
-            <h1 className={'title'}>Welcome to Next.Js!</h1>
+            <Container fluid={true} className={'home-page'}>
+                <h1 className={'title'}>Homepage!</h1>
+            </Container>
         </Layout>
     );
 }
