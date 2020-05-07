@@ -1,15 +1,19 @@
 import http from '../../libs/http';
+import * as types from './actionTypes';
 
 import {setError} from "./error";
 
-export const SET_USER = '@set-user';
-export const SET_USER_ERRORS = '@set-user-errors';
+export const setUser = (payload) => {
+    return {payload, type: types.SET_USER};
+};
+
+export const setUserErrors = (payload) => {
+    return {payload, type: types.SET_USER_ERRORS};
+};
 
 export const loginUser = (payload = {}) => {
-    return async (dispatch) => {
-        try {
-            const res = await http.route('login').post({...payload});
-
+    return (dispatch) => {
+        return http.route('login').post({...payload}).then(res => {
             if (!res.isError) {
                 sessionStorage.setItem('jwt', res.data.token);
 
@@ -22,25 +26,23 @@ export const loginUser = (payload = {}) => {
             } else {
                 dispatch(setUserErrors(res.errorMessage));
             }
-        } catch (e) {
+        }).catch(error => {
             dispatch(setError(e.message));
-        }
+        })
     };
 };
 
 export const logoutUser = () => {
-    return async (dispatch) => {
-        try {
-            const rememberToken = localStorage.getItem('rememberToken');
+    return (dispatch) => {
+        const rememberToken = localStorage.getItem('rememberToken');
 
-            let logoutParams = {};
+        let logoutParams = {};
 
-            if (rememberToken) {
-                logoutParams = Object.assign({}, {rememberToken});
-            }
+        if (rememberToken) {
+            logoutParams = Object.assign({}, {rememberToken});
+        }
 
-            const res = await http.route('logout').post(logoutParams, true);
-
+        return http.route('logout').post(logoutParams, true).then(res => {
             if (!res.isError) {
                 sessionStorage.clear();
                 localStorage.removeItem('rememberToken');
@@ -48,40 +50,24 @@ export const logoutUser = () => {
             } else {
                 dispatch(setUserErrors(res.errorMessage));
             }
-        } catch (e) {
+        }).catch(error => {
             dispatch(setError(e.message));
-        }
-    };
-};
-
-export const setUser = (payload) => {
-    return {
-        payload,
-        type: SET_USER
+        });
     };
 };
 
 export const getUser = () => {
-    return async (dispatch) => {
-        try {
-            const res = await http.route('user').get();
-
+    return (dispatch) => {
+        return http.route('user').get().then(res => {
             if (!res.isError) {
                 dispatch(setUser(res.data));
                 dispatch(setUserErrors(false));
             } else {
                 dispatch(setUserErrors(res.errorMessage));
             }
-        } catch (e) {
+        }).catch(error => {
             dispatch(setError(e.message));
-        }
-    };
-};
-
-export const setUserErrors = (payload) => {
-    return {
-        payload,
-        type: SET_USER_ERRORS
+        });
     };
 };
 

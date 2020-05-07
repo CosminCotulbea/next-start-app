@@ -1,10 +1,7 @@
-export const SET_ERROR = '@set-error';
+import * as types from './actionTypes';
 
 export const setError = (payload = false) => {
-    return {
-        type: SET_ERROR,
-        payload
-    };
+    return {payload, type: types.SET_ERROR};
 };
 
 export default {

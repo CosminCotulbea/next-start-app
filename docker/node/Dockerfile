@@ -1,15 +1,10 @@
-FROM node:alpine
+FROM node:stretch
 
-RUN mkdir /app
-WORKDIR /app
+WORKDIR /var/www
 
 # Install PM2 globally
 RUN npm install --global pm2
-
-COPY package*.json ./
-
 RUN npm install --production --no-optional
-COPY .. ./
 
 EXPOSE 8080
 

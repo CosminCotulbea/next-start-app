@@ -1,9 +1,8 @@
 import axios from 'axios';
 import qs from 'qs';
 
-import {setError} from "../state/actions/error";
-
-import store from "../state/store";
+// import {translate} from './trans';
+import {HTTP_UNAUTHORIZED} from "../environment/constants";
 
 class Http {
     constructor() {
@@ -15,6 +14,7 @@ class Http {
             return request;
         });
         this._axios = axios.create({});
+        this._axios.defaults.timeout = 300000;
         this._url = process.env.API_URL;
         this._apiMethod = false;
         this._response = false;
@@ -50,99 +50,111 @@ class Http {
         let response = this._response && this._response.data ? {...this._response.data} : false;
         this._response = false;
 
-        let isError = false;
-        let errorMessage = {};
-        let data = false;
-        let pagination = false;
+        let errorResponse = {
+            isError: true,
+            isForbidden: false,
+            userFault: true,
+            errorMessage: {},
+            forbiddenMessage: {}
+        };
 
         if (response) {
-            if (response.responseType && response.responseType === 'success') {
-                data = response.data.result;
-                pagination = response.data.pagination !== null ? response.data.pagination : false;
-            } else {
-                isError = true;
-                if (typeof response.errorMessage === 'object') {
+            if (response.isError && response.isError === true) {
+                let errorMessage = {};
+
+                if (response.errorMessage) {
                     for (let error in response.errorMessage) {
                         if (response.errorMessage.hasOwnProperty(error)) {
                             if (Array.isArray(response.errorMessage[error])) {
+                                //use translate
                                 errorMessage = {...errorMessage, [error]: response.errorMessage[error][0]};
                             } else {
+                                //use translate
                                 errorMessage = {...errorMessage, [error]: response.errorMessage[error]};
                             }
                         }
                     }
-                } else {
-                    errorMessage = {error: response.errorMessage};
-
-                    if (response.errorCode === process.env.LOGIN_REQUIRED) {
-                        localStorage.removeItem('rememberToken');
-                        sessionStorage.removeItem('jwt');
-                        window.location.reload();
-                    }
-
-                    if (response.errorMessage === process.env.FRAMEWORK_ERROR) {
-                        store.dispatch(setError(errorMessage.error));
-                    }
                 }
-            }
-        } else {
-            let error = 'Something went wrong!';
-            isError = true;
-            errorMessage = {error};
 
-            store.dispatch(setError(error));
-        }
+                errorResponse = {
+                    ...errorResponse,
+                    ...response,
+                    ...{errorMessage}
+                };
+            } else if (response.isForbidden && response.isForbidden === true) {
+                let forbiddenMessage = {};
 
-        return {
-            isError,
-            errorMessage,
-            data,
-            pagination
-        };
-    }
-
-    buildError() {
-        let errorData = this._error ? {...this._error} : false;
-        this._error = false;
-
-        let isError = false;
-        let errorMessage = {};
-        let data = false;
-        let pagination = false;
-
-        if (errorData) {
-            isError = true;
-            if (typeof errorData.errorMessage === 'object') {
-                for (let error in response.errorMessage) {
-                    if (response.errorMessage.hasOwnProperty(error)) {
-                        if (Array.isArray(response.errorMessage[error])) {
-                            errorMessage = {...errorMessage, [error]: response.errorMessage[error][0]};
-                        } else {
-                            errorMessage = {...errorMessage, [error]: response.errorMessage[error]};
+                if (response.forbiddenMessage) {
+                    for (let error in response.forbiddenMessage) {
+                        if (response.forbiddenMessage.hasOwnProperty(error)) {
+                            if (Array.isArray(response.forbiddenMessage[error])) {
+                                // use translate
+                                forbiddenMessage = {
+                                    ...forbiddenMessage,
+                                    [error]: response.forbiddenMessage[error][0]
+                                };
+                            } else {
+                                // use translate
+                                forbiddenMessage = {
+                                    ...forbiddenMessage,
+                                    [error]: response.forbiddenMessage[error]
+                                };
+                            }
                         }
                     }
                 }
+
+                errorResponse = {
+                    ...errorResponse, ...{
+                        isError: false,
+                        userFault: false
+                    }, ...response,
+                    ...{forbiddenMessage}
+                };
             } else {
-                if (errorData.errorCode === process.env.LOGIN_REQUIRED) {
-                    localStorage.removeItem('rememberToken');
-                    sessionStorage.removeItem('jwt');
-                    window.location.reload();
-                }
-
-                errorMessage = {error: errorData.errorMessage};
-
-                if (errorData.errorCode === process.env.FRAMEWORK_ERROR) {
-                    store.dispatch(setError(errorMessage.error));
-                }
+                return response;
             }
+        } else {
+            //use translate
+            errorResponse = {...errorResponse, errorMessage: {application: 'errors.application'}};
         }
 
-        return {
-            isError,
-            errorMessage,
-            data,
-            pagination
-        };
+        return errorResponse;
+    }
+
+    buildError(status) {
+        let errorData = this._error ? {...this._error} : false;
+        this._error = false;
+
+        if (status === HTTP_UNAUTHORIZED) {
+            sessionStorage.removeItem('jwt');
+            localStorage.removeItem('rememberToken');
+            window.location.reload();
+        } else {
+            let errorMessage = {};
+
+            if (errorData && errorData.errorMessage) {
+                for (let error in errorData.errorMessage) {
+                    if (errorData.errorMessage.hasOwnProperty(error)) {
+                        if (Array.isArray(errorData.errorMessage[error])) {
+                            //use translate
+                            errorMessage = {...errorMessage, [error]: errorData.errorMessage[error][0]};
+                        } else {
+                            //use translate
+                            errorMessage = {...errorMessage, [error]: errorData.errorMessage[error]};
+                        }
+                    }
+                }
+            }
+
+            return {
+                isError: true,
+                isForbidden: false,
+                userFault: true,
+                errorMessage: {...errorMessage},
+                forbiddenMessage: {}
+            };
+        }
     }
 
     async get(options = {}) {
@@ -156,14 +168,15 @@ class Http {
         try {
             this._response = await this._axios.get(url, {
                 params: {
-                    ...options
+                    ...options,
+                    language: localStorage.getItem('lang') || process.env.DEFAULT_LANG
                 },
                 ...authConfig
             });
         } catch (e) {
             this._error = e.response.data;
 
-            return this.buildError();
+            return this.buildError(e.response.status);
         }
 
         return this.build();
@@ -177,12 +190,18 @@ class Http {
 
         let authConfig = Http._getAuthConfig();
 
+        if (data instanceof FormData) {
+            data.append('language', localStorage.getItem('lang') || process.env.DEFAULT_LANG);
+        } else {
+            data.language = localStorage.getItem('lang') || process.env.DEFAULT_LANG;
+        }
+
         try {
             this._response = await this._axios.post(url, data, authConfig);
         } catch (e) {
             this._error = e.response.data;
 
-            return this.buildError();
+            return this.buildError(e.response.status);
         }
 
         return this.build();
@@ -201,7 +220,7 @@ class Http {
         } catch (e) {
             this._error = e.response.data;
 
-            return this.buildError();
+            return this.buildError(e.response.status);
         }
 
         return this.build();
@@ -218,11 +237,12 @@ class Http {
         try {
             this._response = await this._axios.patch(url, {
                 ...data,
+                language: localStorage.getItem('lang') || process.env.DEFAULT_LANG
             }, authConfig);
         } catch (e) {
             this._error = e.response.data;
 
-            return this.buildError();
+            return this.buildError(e.response.status);
         }
 
         return this.build();

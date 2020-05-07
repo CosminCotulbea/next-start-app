@@ -31,6 +31,7 @@ import {
 } from 'reactstrap';
 import '../resources/styles/auth/style.scss';
 import {bodyBackground} from '../resources/styles/styles';
+import backgroundImage from '../resources/images/background-login.jpg';
 
 function Login(props) {
     const [userState, setUserState] = useState({
@@ -68,7 +69,7 @@ function Login(props) {
         await loginUser(userState);
     };
 
-    let jsxStyle = bodyBackground('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    let jsxStyle = bodyBackground(backgroundImage);
     return (
         <Layout title="Login">
             <style jsx>{jsxStyle}</style>
