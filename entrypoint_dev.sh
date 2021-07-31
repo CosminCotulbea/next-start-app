@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-RUN npm install
+npm install
 pm2-runtime node redisServer
