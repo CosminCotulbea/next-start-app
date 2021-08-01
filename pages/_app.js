@@ -4,7 +4,7 @@ import AOS from "aos";
 import { appWithTranslation } from 'next-i18next';
 import { Provider } from "react-redux";
 import store from "state/store";
-import "src/resources/css/index.scss";
+import "src/resources/styles/index.scss";
 import "aos/dist/aos.css";
 
 

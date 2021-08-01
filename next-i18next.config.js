@@ -3,5 +3,5 @@ module.exports = {
       defaultLocale: 'en',
       locales: ['en', 'ro'],
     },
-    localePath: './public/translations',
+    localePath: './src/translations',
 };
