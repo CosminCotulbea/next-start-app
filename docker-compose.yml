@@ -12,6 +12,8 @@ services:
     ports:
       - 80
     restart: unless-stopped
+    depends_on:
+      - next-start-node
     environment:
       VIRTUAL_HOST: ${VIRTUAL_HOSTS}
       VIRTUAL_PORT: 80
@@ -21,6 +23,28 @@ services:
       - next-start
       - nginx-proxy
 
+  next-start-node:
+    user: ${USER_ID}:${GROUP_ID}
+    container_name: next-start-node
+    command: /bin/sh ${ENTRYPOINT}
+    build:
+      context: ./
+      dockerfile: docker/node/Dockerfile
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    depends_on:
+      - next-start-redis
+    volumes:
+      - ./:/var/www
+      - ./node_modules:/var/www/node_modules
+      - ./../nginx-proxy/certs:/etc/certs
+    restart: unless-stopped
+    ports:
+      - 60035:60035
+    networks:
+      - next-start
+
   next-start-redis:
     container_name: next-start-redis
     build:
@@ -28,30 +52,14 @@ services:
       dockerfile: docker/redis/Dockerfile
       args:
         REDIS_PASSWORD: ${REDIS_PASSWORD}
+        REDIS_PORT: ${REDIS_PORT}
     ports:
-      - 6379
+      - ${REDIS_PORT}
     restart: unless-stopped
     sysctls:
       - net.core.somaxconn=511
     networks:
       - next-start
-
-  next-start-node:
-    container_name: next-start-node
-    command: /bin/sh ${ENTRYPOINT}
-    build:
-      context: ./
-      dockerfile: docker/node/Dockerfile
-    depends_on:
-      - next-start-redis
-    volumes:
-      - ./:/var/www
-      - ./node_modules:/var/www/node_modules
-      - ../nginx-proxy/certs:/etc/certs
-    restart: unless-stopped
-    networks:
-      - next-start
-
 networks:
   next-start:
   nginx-proxy:

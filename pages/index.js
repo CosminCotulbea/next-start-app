@@ -1,29 +1,44 @@
-import React from 'react';
-import Layout from "../components/layouts/layout";
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import userActions from '../state/actions/user';
-import {
-    Container,
-} from "reactstrap";
+import React, { useEffect } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { useTranslation } from 'next-i18next';
+import Layout from "src/components/layout/Layout";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useDispatch, useSelector } from "react-redux";
+import { userBaseSelector, userNameSelector, userParsedNameSelector } from "state/user/selectors";
+import { getUser } from "state/user/reducer";
 
+const Home = () => {
 
-function Home(props) {
-    return (
-        <Layout title="Homepage">
-            <Container fluid={true} className={'home-page'}>
-                <h1 className={'title'}>Homepage!</h1>
-            </Container>
-        </Layout>
-    );
-}
+  const dispatch = useDispatch();
+  const user = useSelector(userBaseSelector);
+  const userName = useSelector(userNameSelector);
+  const userParsedName = useSelector(userParsedNameSelector());
 
-function mapStateToProps(state) {
-    return {user: state.user};
-}
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
-function mapDispatchToProps(dispatch) {
-    return {actions: bindActionCreators({...userActions}, dispatch)};
-}
+  const { t } = useTranslation();
+  const seoTags = t("home:seoTags", { returnObjects: true });
+  const navbar = t("navbar:navbar", { returnObjects: true });
+  const footer = t("footer:footer", { returnObjects: true });
+  const cookies = t("common:cookies", { returnObjects: true });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+  return (
+    <Layout title={"Home"} className="custom-class" seoTags={seoTags} resource={{ cookies, footer, navbar }}>
+      <Container>
+        <Row>
+          <Col xl={12} className="text-center pt-5">
+            <h3 className="h3Black">{t('home:features.heading')}</h3>
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
+  );
+};
+
+export const getStaticProps = async ({ locale }) => ({
+  props: { ...await serverSideTranslations(locale, ['common', 'home', 'footer', 'navbar']) }
+});
+
+export default Home;

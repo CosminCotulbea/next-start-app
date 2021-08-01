@@ -1,0 +1,103 @@
+{
+  "footer": {
+    "bottomBar": {
+      "info": "Copyright © 2021 Fleets.ro SRL, CUI: 12345678, Reg. Com. J03/123/2021"
+    },
+    "image": "/images/logo.png",
+    "heading": "Flota dumneavoastră este prioritatea noastră numărul unu",
+    "description": "Urmărește-ne pe ",
+    "links": [
+      {
+        "heading": "FUNCȚIONALITĂTI",
+        "paths": [
+          {
+            "label": "Gestionare vehicule",
+            "link": "/features/fleet-management"
+          },
+          {
+            "label": "Gestionare utilizatori",
+            "link": "/features/user-management"
+          },
+          {
+            "label": "Gestionare carduri combustibil",
+            "link": "/features/cards-management"
+          },
+          {
+            "label": "Gestionare viniete",
+            "link": "/features/vignette-management"
+          },
+          {
+            "label": "Gestionare ITP și revizii tehnice",
+            "link": "/features/itp-management"
+          },
+          {
+            "label": "Gestionare polițe RCA",
+            "link": "/features/rca-management"
+          },
+          {
+            "label": "Gestionare polițe CASCO",
+            "link": "/features/casco-management"
+          },
+          {
+            "label": "Gestionare achiziții",
+            "link": "/features/acquisitions-management"
+          },
+          {
+            "label": "Gestionare centre de cost",
+            "link": "/features/cost-management"
+          }
+        ]
+      },
+      {
+        "heading": "SOLUȚII",
+        "paths": [
+          {
+            "label": "Managementul flotei",
+            "link": "/solutions/fleets-management"
+          },
+          {
+            "label": "Software management flotă",
+            "link": "/solutions/software-management"
+          },
+          {
+            "label": "Localizare auto prin GPS",
+            "link": "/solutions/gps-management"
+          }
+        ]
+      },
+      {
+        "heading": "RESURSE",
+        "paths": [
+          {
+            "label": "Despre noi",
+            "link": "/about"
+          },
+          {
+            "label": "Prețuri",
+            "link": "/pricing"
+          },
+          {
+            "label": "Contact",
+            "link": "/contact"
+          },
+          {
+            "label": "ANPC",
+            "link": "https://anpc.ro/?ref=footer_3_5"
+          },
+          {
+            "label": "ANSPDCP",
+            "link": "https://www.dataprotection.ro"
+          },
+          {
+            "label": "Termeni și condiții",
+            "link": "/terms"
+          },
+          {
+            "label": "Politica de utilizare Cookies",
+            "link": "/privacy"
+          }
+        ]
+      }
+    ]
+  }
+}

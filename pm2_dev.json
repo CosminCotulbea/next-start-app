@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "npm",
+      "script": "npm run dev"
+    },
+    {
+      "name": "redis-server",
+      "script": "node ./redisServer.js"
+    }
+  ]
+}

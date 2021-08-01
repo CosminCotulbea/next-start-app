@@ -1,27 +1,26 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import App from 'next/app';
-import withRedux from 'next-redux-wrapper';
-import createAppStore from '../state/store';
-import NProgress from 'nprogress';
-import Router from 'next/router';
-import 'bootstrap/dist/css/bootstrap.css';
-
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
+import App from "next/app";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import { appWithTranslation } from 'next-i18next';
+import { Provider } from "react-redux";
+import store from "state/store";
+import "src/resources/css/index.scss";
+import "aos/dist/aos.css";
 
 
-class MyApp extends App {
-    render() {
-        const {Component, pageProps, store} = this.props;
-        return (
-            <Provider store={store}>
-                <Component {...pageProps} />
-            </Provider>
-        );
-    }
-}
+const MyApp = ({ Component, pageProps }) => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
 
+  return <Provider store={store}>
+    <Component {...pageProps} />
+  </Provider>
+};
 
-export default withRedux(createAppStore)(MyApp);
+MyApp.getInitialProps = async (appContext) => ({
+  ...(await App.getInitialProps(appContext)),
+});
+
+export default appWithTranslation(MyApp);

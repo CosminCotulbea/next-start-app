@@ -1,14 +1,19 @@
 import { createStore, applyMiddleware} from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunkMiddleware from 'redux-thunk';
-import reducers from './reducers';
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./rootSaga";
+import rootReducer from "./rootReducer";
 
-const createAppStore = (initialState = {}) => {
-    return createStore(
-        reducers,
-        initialState,
-        composeWithDevTools(applyMiddleware(thunkMiddleware))
-    );
-};
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+    rootReducer,
+    {},
+    applyMiddleware(sagaMiddleware)
+);
 
-export default createAppStore;
+if (process.env.NODE_ENV !== 'production' && module.hot) {
+    module.hot.accept('./rootReducer', () => store.replaceReducer(rootReducer))
+}
+
+sagaMiddleware.run(rootSaga);
+
+export default store;
