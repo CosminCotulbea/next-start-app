@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "npm",
-      "script": "npm run dev"
+      "script": "npm run start"
     },
     {
       "name": "redis-server",

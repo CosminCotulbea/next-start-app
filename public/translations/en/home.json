@@ -1,7 +1,7 @@
 {
   "seoTags": {
     "title": "Fleets - Home",
-    "description": "Flota dumneavoastră este prioritatea noastră numărul unu",
+    "description": "Header description",
     "og": {
       "title": "Flota dumneavoastră este prioritatea noastră numărul unu",
       "description": "Echipa ta de management al flotei poate gestiona sarcinile flotei în timp real, mult mai ușor, de oriunde, folosind aplicația noastră web simplă și intuitivă.",
@@ -39,7 +39,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, itaque."
   },
   "features": {
-    "heading": "Flota dumneavoastră este prioritatea noastră numărul unu",
+    "heading": "Heder description",
     "description": "Echipa ta de management al flotei poate gestiona sarcinile flotei în timp real, mult mai ușor, de oriunde, folosind aplicația noastră web simplă și intuitivă.",
     "cards": [
       {
