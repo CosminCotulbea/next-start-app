@@ -1,4 +1,5 @@
 const { i18n } = require('./next-i18next.config');
+const redirects = require('./redirects.json');
 
 module.exports = {
   env: {
@@ -20,5 +21,8 @@ module.exports = {
       aggregateTimeout: 300
     };
     return config;
+  },
+  async redirects() {
+    return redirects
   },
 };
