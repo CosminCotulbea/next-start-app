@@ -1,21 +1,5 @@
 {
-    "phoneNumber": {
-        "text": "+40 0000 0000",
-        "icon": "phone"
-    },
-    "socialMedia": {
-        "facebook": {
-            "icon": "facebook",
-            "label": "Facebook",
-            "link": "https://facebook.com"
-        }
-    },
     "cookies": {
-        "heading": "Fleets folosește Cookies",
-        "description": " Aceste cookies ne ajută pentru a vă îmbunătăți experiența, să reținem limba preferată și pentru a număra vizitatorii care accesează pagina noastră.",
-        "buttonAccept": "Acceptă și continuă",
-        "privacyButton": "Termeni și condiții",
-        "and": "- și -",
-        "cookieButton": "Politica de utilizare Cookies"
+        "heading": "Cookies"
     }
 }

@@ -1,15 +1,13 @@
 {
   "seoTags": {
-    "title": "Fleets - Home",
-    "description": "Flota dumneavoastră este prioritatea noastră numărul unu",
+    "title": "Acasa",
+    "description": "Descriere antet",
     "og": {
-      "title": "Flota dumneavoastră este prioritatea noastră numărul unu",
-      "description": "Echipa ta de management al flotei poate gestiona sarcinile flotei în timp real, mult mai ușor, de oriunde, folosind aplicația noastră web simplă și intuitivă.",
-      "site_name": "Fleets - Flota dumneavoastră este prioritatea noastră numărul unu",
-      "url": "https://landing.fleets.ro/",
-      "image": "https://landing.fleets.ro/images/fleets-logo.svg",
-      "imageTitle": "Fleets logo",
-      "imageAlt": "Fleets logo"
+      "title": "Next start",
+      "description": "next start description",
+      "site_name": "next start app",
+      "url": "http://next.start.local",
+      "image": "https://cdn.getshifter.co/caa65008efb706a8bfc6f7e4045d6a018420c3df/uploads/2020/11/nextjs.png"
     },
     "twitter": {
       "card": "",
@@ -18,111 +16,5 @@
       "site": "",
       "creator": ""
     }
-  },
-  "slider": {
-    "typeWriter": [
-      "Te putem ajuta cu",
-      "managementul flotei",
-      "notificari pentru expirarea documentelor",
-      "raportari flota auto",
-      "stocarea documentelor",
-      "localizare GPS auto",
-      "asignarea vehiculelor per",
-      "utilizator",
-      "departament",
-      "locație"
-    ],
-    "buttonMore": "More",
-    "buttonPlay": "Watch video",
-    "image": "/images/slidergraphic2.png",
-    "heading": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, odit?",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, itaque."
-  },
-  "features": {
-    "heading": "Flota dumneavoastră este prioritatea noastră numărul unu",
-    "description": "Echipa ta de management al flotei poate gestiona sarcinile flotei în timp real, mult mai ușor, de oriunde, folosind aplicația noastră web simplă și intuitivă.",
-    "cards": [
-      {
-        "icon": "FaArrowRight",
-        "image": "/images/card1.svg",
-        "heading": "Management administrativ al flotei",
-        "description": "Fleets vă poate ajuta să administrați flota dumneavoastră deautovehicule în timp real, mult mai ușor, prin eliminarea timpilor morți și propabil al multiplelor aplicații conexe folositede către administratorii de flotă.",
-        "button": {
-          "text": "Explorează acum",
-          "link": "/services/management-flota"
-        }
-      },
-      {
-        "icon": "FaArrowRight",
-        "image": "/images/card2.svg",
-        "heading": "Raportări",
-        "description": "Având în vedere dezvoltarea tehnologică continuă din zilele noastre,va punem la dispoziție numeroase rapoarte care vin în ajutorul administratorilor de flota pentru eficientizarea costurilor flotelor auto.",
-        "button": {
-          "text": "Explorează acum",
-          "link": "/demo/tour"
-        }
-      },
-      {
-        "icon": "FaArrowRight",
-        "image": "/images/card3.svg",
-        "heading": "Localizare auto prin GPS",
-        "description": "Vă oferim posibilitatea să localizați prin GPS vehiculele din flota dumneavoastră folosind tehnologii moderne și o interfață cu un design atractiv și intuitiv.",
-        "button": {
-          "text": "Explorează acum",
-          "link": "/services/gps-management"
-        }
-      },
-      {
-        "icon": "FaArrowRight",
-        "image": "/images/card4.svg",
-        "heading": "Notificări",
-        "description": "Veți fi întotdeauna înștiințați din timp referitor la expirarea documentelor necesare rulajului în trafic al autovehiculelor șial șoferilor din flota dumneavoastră. În acest sens, veți evita posibilele amenzi contravenționale sau chiar suspendarea dreptul de a participa în trafic.",
-        "button": {
-          "text": "Explorează acum",
-          "link": "/demo/tour"
-        }
-      }
-    ],
-    "button": {
-      "text": "Vedeți funcționalități",
-      "link": "/demo/tour"
-    }
-  },
-  "advancedFeatures": {
-    "cards": [
-      {
-        "image": "/images/scope.svg",
-        "heading": "Scopul și valorile noastre",
-        "description": "Indiferent că sunteți o persoană fizică, întreprindere sau o corporație, <mark class='mark-fleets'>Fleets</mark> aduce o nouă viziune referitor la administrarea autovehiculelor dumneavoastră, oferind funcționalități și soluții pentru managementul flotelor auto, reducând costurile, crescând productivitatea și de ce nu, profitul. Folosim tehnologii noi care vor aduce multiple beneficii și avantaje managerilor de flote, eficientizând operațiunile uzuale, necesare întreținerii și administrării vehiculelor sau pentru gestionarea mult mai ușoară a documentelor, utilizatorilor și al elementelor care țin de buna funcționare și rulare in trafic ale acestora, permițându-le să-și concentreze atenția către sarcini mai critice care necesită atenție umană."
-      },
-      {
-        "image": "/images/delivery.png",
-        "heading": "Următorul pas, inovare și succes",
-        "description": "Având în vedere că fiecare companie poate avea propriile procese și strategii de management al flotei, ne propunem, dorim și avem intenția să dezvoltăm soluții inovatoare în acest domeniu, într-un timp cât mai scurt posibil, bineînțeles, în funcție de solicitarie clienților noștri și de resursele disponibile. Prioritatea noastră este flota dumneavoastră, echipa noastră vă stă la dispoziție și suntem deschiși pentru posibile colaborări sau integrări cu soluții terțe care au potențial și vor aduce plus-valoare companiei dumneavoastră și a clienților noștri."
-      }
-    ]
-  },
-  "parallaxContainer": {
-    "image": "Test",
-    "heading": "Hai să lucrăm împreună",
-    "description": "Luați legătura cu noi și lăsăți-ne să vă ajutăm. Împreună putem face managementul flotei mai simplu și mai eficient.",
-    "button": {
-      "text": "Începe Acum",
-      "link": "/"
-    }
-  },
-  "moreInfo": {
-    "heading": "Hai să lucrăm împreună",
-    "description": "Luați legătura cu noi și lăsăți-ne să vă ajutăm. Împreună putem face managementul flotei mai simplu și mai eficient.",
-    "buttons": [
-      {
-        "text": "Începe Acum",
-        "link": "/demo/tour"
-      },
-      {
-        "text": "Contactați-ne",
-        "link": "/demo"
-      }
-    ]
   }
 }

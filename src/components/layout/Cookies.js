@@ -21,18 +21,18 @@ const Cookies = ({ cookies }) => {
     <Fragment>
       {showCookiePopup && <Card className="card-cookie">
         <Card.Body>
-          <Card.Title className="mb-4"><i className="fas fa-cookie-bite mr-2"></i>{cookies.heading}</Card.Title>
+          <Card.Title className="mb-4"><i className="fas fa-cookie-bite mr-2"></i>Cookies header</Card.Title>
 
           <div className="set-card">
-            <p>{cookies.description}</p>
+            <p>Cookies description</p>
             <Button className="buttonAccent" onClick={_acceptCookie}>
-              {cookies.buttonAccept}
+              Accept
             </Button>
           </div>
           <div className="cookies-buttons">
-            <Link href="/terms">{cookies.privacyButton}</Link>
-            <span className="ml-2 mr-2">{cookies.and}</span>
-            <Link href="/privacy">{cookies.cookieButton}</Link>
+            <Link href="/terms">Termeni și condiții</Link>
+            <span className="ml-2 mr-2">- și -</span>
+            <Link href="/privacy">Politica de utilizare Cookies</Link>
           </div>
         </Card.Body>
       </Card>}

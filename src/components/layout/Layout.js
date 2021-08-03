@@ -4,12 +4,11 @@ import Footer from './Footer';
 import React, {Fragment} from "react";
 import Cookies from "./Cookies";
 
-const Layout = ({ seoTags, children, resource }) => {
-
+const Layout = ({ seoTags, children, navbar = true, cookies = true, footer = true}) => {
     return (
         <Fragment>
             {seoTags && <Head>
-                <title>{seoTags.title || 'Fleets'}</title>
+                <title>{seoTags.title || 'Next start'}</title>
                 <meta name="description" content={seoTags.description} />
                 <meta property="og:type" content="website" />
                 <meta name="og:title" property="og:title" content={seoTags.og.title} />
@@ -25,12 +24,12 @@ const Layout = ({ seoTags, children, resource }) => {
                 <meta name="twitter:creator" content={seoTags.twitter.creator} />
             </Head>
             }
-            {resource.navbar && <Header resource={resource.navbar} />}
+            {navbar && <Header />}
             <div className="page-layout">
                 {children}
             </div>
-            {resource.cookies && <Cookies cookies={resource.cookies} />}
-            {resource.footer && <Footer resource={resource.footer} />}
+            {cookies && <Cookies />}
+            {footer && <Footer />}
         </Fragment>
     )
 };

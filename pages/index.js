@@ -18,14 +18,15 @@ const Home = () => {
     dispatch(getUser());
   }, []);
 
+  console.log(user);
+  console.log(userName);
+  console.log(userParsedName);
+
   const { t } = useTranslation();
   const seoTags = t("home:seoTags", { returnObjects: true });
-  const navbar = t("navbar:navbar", { returnObjects: true });
-  const footer = t("footer:footer", { returnObjects: true });
-  const cookies = t("common:cookies", { returnObjects: true });
 
   return (
-    <Layout title={"Home"} className="custom-class" seoTags={seoTags} resource={{ cookies, footer, navbar }}>
+    <Layout title={"Home"} className="custom-class" seoTags={seoTags} cookies={false}>
       <Container>
         <Row>
           <Col xl={12} className="text-center pt-5">
@@ -38,7 +39,7 @@ const Home = () => {
 };
 
 export const getStaticProps = async ({ locale }) => ({
-  props: { ...await serverSideTranslations(locale, ['common', 'home', 'footer', 'navbar']) }
+  props: { ...await serverSideTranslations(locale, ['home']) }
 });
 
 export default Home;
