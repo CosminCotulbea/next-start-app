@@ -1,23 +1,4 @@
-:root {
-  --layout-background-color: #F1F4F8;
-  --layout-grey: #F1F4F8;
-  --layout-white: #FFF;
-  --layout-teal: #01CBBB;
-  --layout-rollover: #DDE1E9;
-  --layout-light-grey: #A3A8B3;
-  --layout-dark-grey: #38414F;
-  --layout-medium-grey: #646973;
-  --layout-light: #E2E5ED;
-  --layout-main-color: #0875FD;
-}
-
-// @font-face {
-//   font-family: 'CircularStd-Bold';
-//   // src: url('/static/fonts/Montserrat-Regular.ttf'); // pattern: /directoryName/file.extension
-//   src: url('fonts/CircularStd/CircularStd-Bold.otf');
-//   font-display: swap;
-// }
-
-html body {
-   background-color: var(--layout-background-color);
-}
+@import "~bootstrap/scss/bootstrap";
+@import "variables";
+@import "global";
+@import "auth";

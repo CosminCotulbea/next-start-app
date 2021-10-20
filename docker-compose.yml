@@ -10,7 +10,7 @@ services:
     volumes:
       - ./:/var/www
     ports:
-      - 80
+      - "80"
     restart: unless-stopped
     depends_on:
       - next-start-node
@@ -41,7 +41,7 @@ services:
       - ./../nginx-proxy/certs:/etc/certs
     restart: unless-stopped
     ports:
-      - 60035:60035
+      - "60035:60035"
     networks:
       - next-start
 

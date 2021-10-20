@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
 import rootReducer from "./rootReducer";
@@ -11,7 +11,7 @@ const store = createStore(
 );
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('./rootReducer', () => store.replaceReducer(rootReducer))
+    module.hot.accept('./rootReducer', () => store.replaceReducer(rootReducer));
 }
 
 sagaMiddleware.run(rootSaga);
