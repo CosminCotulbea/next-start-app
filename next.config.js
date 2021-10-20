@@ -1,5 +1,4 @@
 const { i18n } = require('./next-i18next.config');
-const redirects = require('./redirects.json');
 
 module.exports = {
   env: {
@@ -13,16 +12,5 @@ module.exports = {
     REDIS_PASSWORD: process.env.REDIS_PASSWORD,
     CERT_FILE_NAME: process.env.CERT_FILE_NAME
   },
-  i18n,
-  webpackDevMiddleware: config => {
-    config.disableHostCheck = true;
-    config.watchOptions = {
-      poll: 1000,
-      aggregateTimeout: 300
-    };
-    return config;
-  },
-  async redirects() {
-    return redirects
-  },
+  i18n
 };
