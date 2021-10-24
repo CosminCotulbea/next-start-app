@@ -6,9 +6,9 @@ import {FaLock, FaLockOpen, FaUser} from 'react-icons/fa';
 import {useDispatch} from "react-redux";
 import {loginUser} from "src/state/user/reducer";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import { useTranslation } from 'next-i18next';
+import { useTranslation, i18n } from 'next-i18next';
 
-const Login = () => {
+const Login = ({locale}) => {
     const dispatch = useDispatch();
     const {t} = useTranslation();
     const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +20,8 @@ const Login = () => {
 
     const _login = (e) => {
         e.preventDefault();
-        dispatch(loginUser(user));
+        i18n.changeLanguage('ro');
+        // dispatch(loginUser(user));
     };
 
     const changeHandler = (event) => {

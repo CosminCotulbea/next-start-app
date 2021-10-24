@@ -1,7 +1,11 @@
 module.exports = {
     i18n: {
-        defaultLocale: 'en',
+        defaultLocale: process.env.DEFAULT_LANG,
         locales: ['en', 'ro']
     },
-    defaultNS: 'translation'
+    debug: process.env.APP_ENV === 'local',
+    serializeConfig: false,
+    use: [],
+    defaultNS: 'translation',
+    returnObjects: true,
 };

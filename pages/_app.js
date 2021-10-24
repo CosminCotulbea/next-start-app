@@ -1,10 +1,10 @@
 import React from "react";
 import {appWithTranslation} from 'next-i18next';
+import i18next from 'next-i18next.config';
 import {Provider} from "react-redux";
 import store from "src/state/store";
 import "src/resources/styles/index.scss";
 import Head from 'next/head'
-import nextI18NextConfig from '../next-i18next.config.js';
 
 const MyApp = ({Component, pageProps}) => {
     const getLayout = Component.getLayout || ((page) => page);
@@ -20,4 +20,4 @@ const MyApp = ({Component, pageProps}) => {
     </>
 };
 
-export default appWithTranslation(MyApp);
+export default appWithTranslation(MyApp, i18next);

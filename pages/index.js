@@ -20,7 +20,7 @@ const Home = () => {
 Home.getLayout = function getLayout(page) {
     const {t} = useTranslation();
     return (
-        <Layout seoTags={t("translation:seo", { returnObjects: true })}>
+        <Layout seoTags={t("translation:seo")}>
             {page}
         </Layout>
     )
