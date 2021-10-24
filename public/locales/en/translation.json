@@ -1,3 +1,20 @@
 {
-
+  "seo": {
+    "title": "next-start-app",
+    "description": "next-start-app-description",
+    "og": {
+      "title": "next-og-title",
+      "description": "next-og-description",
+      "site_name": "next-start-app",
+      "url": "next.start.local",
+      "image": "next-start-image"
+    },
+    "twitter": {
+      "card": "next-start-card",
+      "title": "next-start",
+      "description": "next-start",
+      "site": "next.start.local",
+      "creator": "cosmin.cotulbea"
+    }
+  }
 }

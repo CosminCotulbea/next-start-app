@@ -1,42 +1,33 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col} from "react-bootstrap";
-// import { useTranslation } from 'next-i18next';
+import React, {useEffect} from "react";
+import {Col, Container, Row} from "react-bootstrap";
+import {AuthWrapper} from "@components/RouteWrappers/AuthWrapper";
 import Layout from "@components/Layout";
-// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useDispatch } from "react-redux";
-import { getUser } from "src/state/user/reducer";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
-
-  // const { t } = useTranslation();
-  // const seoTags = t("seo", { returnObjects: true });
-  // console.log(seoTags);
-
-  return (
-      <Container>
-          <Row>
-              <Col md={12} className="text-center pt-5">
-                  <h3 className="h3Black">{'Home'}</h3>
-              </Col>
-          </Row>
-      </Container>
-  );
+    return (
+        <Container>
+            <Row>
+                <Col md={12} className="text-center pt-5">
+                    <h3 className="h3Black">{'Home'}</h3>
+                </Col>
+            </Row>
+        </Container>
+    );
 };
 
 Home.getLayout = function getLayout(page) {
+    const {t} = useTranslation();
     return (
-        <Layout>
+        <Layout seoTags={t("translation:seo", { returnObjects: true })}>
             {page}
         </Layout>
     )
 }
 
-// export const getStaticProps = async ({ locale }) => ({
-//   props: { ...await serverSideTranslations(locale) }
-// });
+export const getStaticProps = async ({ locale }) => ({
+  props: { ...await serverSideTranslations(locale, ['translation']) }
+});
 
-export default Home;
+export default AuthWrapper(Home);

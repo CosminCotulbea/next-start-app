@@ -14,7 +14,7 @@ class Http {
             return request;
         });
         this._axios = axios.create({});
-        this._url = process.env.REACT_APP_API_ENDPOINT;
+        this._url = process.env.API_ENDPOINT;
         this._route = false;
         this._response = false;
     }
@@ -121,7 +121,7 @@ class Http {
             this._response = await this._axios.get(url, {
                 params: {
                     ...options,
-                    language: localStorage.getItem("i18nextLng") || process.env.REACT_APP_DEFAULT_LANG,
+                    language: localStorage.getItem("i18nextLng") || process.env.DEFAULT_LANG,
                 },
                 ...authConfig,
             });
@@ -143,10 +143,10 @@ class Http {
         if (data instanceof FormData) {
             data.append(
                 "language",
-                localStorage.getItem("i18nextLng") || process.env.REACT_APP_DEFAULT_LANG
+                localStorage.getItem("i18nextLng") || process.env.DEFAULT_LANG
             );
         } else {
-            data.language = localStorage.getItem("i18nextLng") || process.env.REACT_APP_DEFAULT_LANG;
+            data.language = localStorage.getItem("i18nextLng") || process.env.DEFAULT_LANG;
         }
 
         try {
@@ -191,7 +191,7 @@ class Http {
                 url,
                 {
                     ...data,
-                    language: localStorage.getItem("i18nextLng") || process.env.REACT_APP_DEFAULT_LANG,
+                    language: localStorage.getItem("i18nextLng") || process.env.DEFAULT_LANG,
                 },
                 authConfig
             );
@@ -212,10 +212,10 @@ class Http {
         if (data instanceof FormData) {
             data.append(
                 "language",
-                localStorage.getItem("i18nextLng") || process.env.REACT_APP_DEFAULT_LANG
+                localStorage.getItem("i18nextLng") || process.env.DEFAULT_LANG
             );
         } else {
-            data.language = localStorage.getItem("i18nextLng") || process.env.REACT_APP_DEFAULT_LANG;
+            data.language = localStorage.getItem("i18nextLng") || process.env.DEFAULT_LANG;
         }
 
         try {

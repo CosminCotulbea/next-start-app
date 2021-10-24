@@ -28,6 +28,7 @@
     "http": "0.0.0",
     "https": "^1.0.0",
     "fs": "0.0.2",
-    "ioredis": "^4.25.0"
+    "ioredis": "^4.25.0",
+    "i18next-browser-languagedetector": "^6.1.2"
   }
 }

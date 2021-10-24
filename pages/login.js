@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 import AuthCard from "src/components/Reusable/AuthCard";
+import {GuestWrapper} from "@components/RouteWrappers/GuestWrapper";
 import {Button, Card, Col, Form, InputGroup, Row} from "react-bootstrap";
 import {FaLock, FaLockOpen, FaUser} from 'react-icons/fa';
 import {useDispatch} from "react-redux";
 import {loginUser} from "src/state/user/reducer";
-// import {useTranslation} from "next-i18next";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 const Login = () => {
     const dispatch = useDispatch();
-    // const {t} = useTranslation(['login']);
+    const {t} = useTranslation();
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState({
         email: "",
@@ -29,7 +31,7 @@ const Login = () => {
     }
 
     return <>
-        <AuthCard title={'Login'}>
+        <AuthCard title={t('login:title')}>
             <Form onSubmit={_login} className={'mb-3'}>
                 <Form.Group>
                     <InputGroup className="mb-4 auth-input-group">
@@ -82,4 +84,8 @@ const Login = () => {
     </>;
 };
 
-export default Login;
+export const getStaticProps = async ({ locale }) => ({
+    props: { ...await serverSideTranslations(locale, ['login']) }
+});
+
+export default GuestWrapper(Login);
