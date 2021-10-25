@@ -7,9 +7,11 @@ import {useDispatch} from "react-redux";
 import {loginUser} from "src/state/user/reducer";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import { useTranslation, i18n } from 'next-i18next';
+import { useRouter } from 'next/router'
 
 const Login = ({locale}) => {
     const dispatch = useDispatch();
+    const route = useRouter();
     const {t} = useTranslation();
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState({
@@ -18,9 +20,11 @@ const Login = ({locale}) => {
         remember: false
     });
 
+    const { pathname, asPath, query } = route;
     const _login = (e) => {
         e.preventDefault();
         i18n.changeLanguage('ro');
+        route.push({ pathname, query }, asPath, { locale: i18n.language })
         // dispatch(loginUser(user));
     };
 
