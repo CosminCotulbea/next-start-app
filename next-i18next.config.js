@@ -3,7 +3,7 @@ module.exports = {
         defaultLocale: process.env.DEFAULT_LANG,
         locales: ['en', 'ro']
     },
-    debug: process.env.APP_ENV === 'local',
+    debug: false,
     serializeConfig: false,
     use: [],
     defaultNS: 'translation',
